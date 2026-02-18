@@ -1,0 +1,173 @@
+Mi guía de SS - powered & maked by Fxle
+
+
+—------------- Formas para ejecutar un DLL —-------------
+
+regsvr32 matematicas.dll
+Rundll32 geografia.dll
+
+—-- formas de ejecutar un JAR —--
+
+Java -jar miarchivo.jar
+
+—-- Formas de ejecutar un exe o un EXE con extensión modificada —--
+
+Start proyectobiologia.exe/proyectobiologia.xyz
+(Usar system informer para comprobar extensión modificada)
+
+
+Paso 1 --------------------------Para que no graben ------------------------------------
+powershell -command "irm 'https://raw.githubusercontent.com/Orbdiff/powershell/refs/heads/main/kill-screen-processes.ps1' | iex" 
+
+Si en este script se encuentra el proceso EXPLORER.EXE, seleccionaremos la opción de killear todos excepto uno (en este caso explorer.exe) en caso de hacerlo, perderemos todas las strings que habían en explorer.exe.
+
+Paso 2 ---------------------------- %appdata% -------------------------------------
+
+Revisar mods, versions, logs, texture packs.
+
+Paso 3 ---------------------- SS tools y scripts ---------------------------
+
+
+—-ss tools—
+powershell -command "irm 'https://raw.githubusercontent.com/xsolary1234-hash/Screenshare-Alliance/refs/heads/main/SS.ps1' | iex"
++
+https://github.com/Orbdiff/SSTool/releases/tag/tool
+
+—--Repositorios Github—-
+https://github.com/orbdiff
+https://github.com/spokwn
+https://github.com/nay-cat
+
+
+— scripts—-
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/CommonDirectories.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/DoomsdayFinder.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Drive-Executions.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/HardDiskPaths.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/SchedulesV2.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Signed-Scheduled-Tasks' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Services.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Spokwn-Collect.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/ftk%20imager-ps1' | iex"
+powershell -Command "irm 'https://github.com/praiselily/lilith-ps/blob/main/Service-Enabler.ps1' | iex"
+
+
+
+
+Powered by Fxle
+
+Paso 4 -------------------- System Informer Regex -------------------
+
+SysMain
+C:\\windows\\prefetch((?!Exe).)*$ - Extensiones modificadas
+
+Dnscache
+whiteout.lol|slapp.in|entropy.club|vape.gg|dopp.in|neverlack.in|dream.xyz| - Dominios web
+
+CDPUserSvc
+^\[{"application":"c:\\((?!Exe).)*$ - Extensiones Modificadas
+[{"application":"[A-Z]:\\\\((?!exe).)*","platform" - Excluye exes
+^\[{"application":.*_exe_ - Posibles Ejecuciones
+^{"displayText":".*black - Posibles Ejecuciones
+Otros - {1ac14e77-02e7-4e5d-b744-2eb1ae5198b7} > ^((?!cmd.exe|notepad.exe|mmc.exe|rundll32.exe|msconfig.exe|dllhost.exe|diskpart.exe|regedit.exe).)*$
+
+SearchIndexer.exe
+^file:C: - Mostrará sólo el disco C:
+
+SgrmBroker.exe
+^{"ProcessID":.+"ImageName":"[a-z]((?!exe).)*$ - Extensiones Modificadas
+"ExitCode":[1-9] - No ExitCode 0 (Aplicaciones no ejecutadas correctamente o cheats)
+
+ctfmon.exe
+^[A-Z]:.+.\\((?!exe).)*$ - Excluye exes
+^[A-Z]:.+.\\((?!dll).)*$ - Excluye dlls
+
+Registry
+^[A-Z]:(\\).*(FriendlyAppNames|ApplicationCompany) - Posibles Ejecuciones
+
+lghub_agent.exe
+durationms.+isDown - Macro
+
+Everything
+.anydesk|.mp4|.webm|.avi|.mkv|.html - Grabaciones (Puedes añadir más extensiones de video)
+regex:[^\x00-\x7FFFFFFF] - Invisible/Hollow Character | Unicode
+regex:[^\x00-\xFFFF] - Invisible/Hollow Character | Unicode
+
+DPS & Diagtrack
+^!![A-Z]((?!Exe).)*$ | no filtrar .exe
+^\\device\\harddiskvolume((?!Exe|dll).)*$ | no filtrar .exe
+^\\device\\harddiskvolume[0-9]\\((?!exe).)*$ | extension modificada
+^\\device\\((?!harddiskvolume4).)*$ | no filtrar harddiskvolume3
+^\\device\\mup\\localhost\\* | localhost
+^\\\\localhost | Localhost
+
+Recomiendo probar este apartado en Diagtrack y DPS
+
+CSRSS, filtrar por regex (case-insensitive) 
+
+Filtrados para ver .dll's: 
+^(?:\\\\\?\\)?[A-Za-z]:\\.+$
+
+Filtrados para .exe's: 
+^(?!.*\.dll$)(?:\\\\\?\\)?[A-Za-z]:\\.+$
+
+(CSRSS, DIAGTRACK, ETC)NO FILTRA .EXE / NO FILTRA .DLL
+
+^(?!.*(\.exe|\\)$)^[A-Z]:\\.* (No filtra .exe)
+^(?!.*(\.dll|\\)$)^[A-Z]:\\.* (No filtra .dll)
+
+Paso 4.1 ------------------ PcaSvc ejecucción de .exe -----------------
+1) Abre System Informer y busca el proceso explorer.exe
+2) Sacale strings a el proceso explorer.exe y espera a que termine
+3) Una vez listo filtra usando Contains (Case-Insensitive) por pcaclient
+4) Guarda los resultados (botón save)
+5) Analiza los resultados teniendo en cuenta que los más recientes son los que estén más abajo y los más antiguos los que se encuentren más arriba.
+Powered by Fxle
+
+Paso 5 -------------------- Everything ---------------------
+.jar/.exe/.dll = no resultados entonces ctrl + shift + f y luego restaurar por defecto.
+
+
+Paso 6 —--------------- ConsoleHostHistory —---------------
+Everything -> ConsoleHost_History.txt
+Este .txt registra todos los comandos ejecutados en powershell, uns vez abierto el .txt revisar linea por linea (Sabiendo que lo que esta más abajo es lo más reciente y lo que esta más arriba lo más antiguo)
+
+
+Paso 6.1 —---------------- JavaLauncher Log —-----------------
+Everything -> JavaLauncher.log, este .log es un archivo donde se encuentra la información de todos los archivos que fueron ejecutados con el programa de java (java -jar), si se repite la misma linea de texto con el mismo nombre del archivo que se encuentra despues del .exe de JAVA, buscar en everything el nombre de ese archivo, ir a cmd y al lugar donde esta ese archivo que vimos anteriormente y ejecutarlo con java -jar (siempre revisa lo ultimo del .log)
+
+
+
+
+Paso 7 —------- Journal file information —----
+
+Sospechamos de un archivo que nos dió system informer o alguna otra app? Bien, para ello siempre hay que verificar en JOURNAL TRACE los logs de journal dejados por el archivo. Extra: siempre que busques el archivo del que sospechas en JOURNAL TRACE, hazle click derecho y apreta la opción de SHOW FILE INFORMATION, en el apartado de los logs vemos un nombre diferente al ultimo log del archivo dejado? Bueno, es una clara señal de que se le cambio el nombre. Sospechamos que nos borró journal ya que JournalTrace contiene pocos logs, para ello utilizaremos la app CHECKDELETEDUSN para confirmar (https://github.com/Orbdiff/CheckDeletedUSN)
+
+Paso 8 —----- Doomsday fxcker —-----
+
+Aquí te explicare 2 metodos de como encontrar doomsday con system informer.
+
+— Metodo 1 —
+System informer -> explorer.exe -> propiedades -> memory -> options -> strings y pones 5 y marcas todo -> filtrar por contains (case insensitive. NO REGEX) y escribes -jar y revisas los resultados
+
+—- Metodo 2 —-
+System informer -> busca el proceso MsMpEng.exe -> sacas strings (es decir, propiedades -> memory -> options -> strings y SIEMPRE se debe poner 5 y activar todas las casillas) una vez termine system informer de sacar strings filtraremos por Contains (case insensitive) y luego ponemos -jar -> revisar resultados
+
+
+—----- system informer canary —---
+
+Siempre cada que abres system informer por primera vez en una SS tienes q ir a HELP y la primera opción de recent updates y elegir "CANARY" siempre, si dice ultima versión está bien.
+
+
+
+—---- Kernel Mode —---
+Para hacer todo lo de sacar strings y filtrar utilizaremos una opción llamada Enable KernelMode, para activarla vamos a OPTIONS y en lo que te aparece buscas ENABLE KERNEL MODE
+
+
+Posdata: Ejecutar siempre system informer como admin.
+
+
+
+
+
+Powered & maked by Fxle - All rights deserved.
