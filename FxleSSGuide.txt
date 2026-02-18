@@ -15,6 +15,10 @@ Java -jar miarchivo.jar
 Start proyectobiologia.exe/proyectobiologia.xyz
 (Usar system informer para comprobar extensión modificada)
 
+Wmic process call create miarchivotest.exe (en CMD)
+
+.\miarchivo.exe (en Powershell)
+
 
 -------------------------- Para que no te graben ------------------------------------
 powershell -command "irm 'https://raw.githubusercontent.com/Orbdiff/powershell/refs/heads/main/kill-screen-processes.ps1' | iex" 
@@ -41,17 +45,35 @@ https://github.com/nay-cat
 
 
 — scripts—-
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/CommonDirectories.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/DoomsdayFinder.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Drive-Executions.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/HardDiskPaths.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/SchedulesV2.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Signed-Scheduled-Tasks' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Services.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Spokwn-Collect.ps1' | iex"
-powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/ftk%20imager-ps1' | iex"
-powershell -Command "irm 'https://github.com/praiselily/lilith-ps/blob/main/Service-Enabler.ps1' | iex"
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/CommonDirectories.ps1' | iex" 
+- Este script filtra los archivos legitimos del sistema para encontrar rápidamente archivos sospechosos o ejecutables inyectados
 
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/DoomsdayFinder.ps1' | iex"
+- Este script detecta rastros de ejecución, modificacion del sistema y cheats eliminados (especificamente Doomsday)
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Drive-Executions.ps1' | iex"
+- este script esta diseñado para rastrear que archivos se han ejecutado en la pc directamente desde USBs
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/HardDiskPaths.ps1' | iex"
+- esto identifica y lista todos los archivos ejecutables almacenados en las particiones del disco
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/SchedulesV2.ps1' | iex"
+- Analiza las tareas programadas de Windows
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Signed-Scheduled-Tasks' | iex"
+- analiza las tareas programadas buscando archivos que, estan firmados digitalmente pero poseen firmas sospechosas
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Services.ps1' | iex"
+- Lista todos los servicios de windows y su estado (Running, Stopped)
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/Spokwn-Collect.ps1' | iex"
+- Esto instala en la pc del usuario todas las SS Tools de Spokwn
+
+powershell -Command "irm 'https://raw.githubusercontent.com/praiselily/lilith-ps/main/ftk%20imager-ps1' | iex"
+- Utiliza FTK Imager para realizar un dump de la memoria RAM del sistema y guardarlo en un archivo
+
+powershell -Command "irm 'https://github.com/praiselily/lilith-ps/blob/main/Service-Enabler.ps1' | iex"
+Este script activa todos los servicios fundamentales de windows que se encuentran Stopped como por ejemplo Sysmain
 
 
 
@@ -112,7 +134,7 @@ Filtrados para ver .dll's:
 Filtrados para .exe's: 
 ^(?!.*\.dll$)(?:\\\\\?\\)?[A-Za-z]:\\.+$
 
-(CSRSS, DIAGTRACK, ETC)NO FILTRA .EXE / NO FILTRA .DLL
+(CSRSS, DIAGTRACK, ETC) NO FILTRA .EXE / NO FILTRA .DLL
 
 ^(?!.*(\.exe|\\)$)^[A-Z]:\\.* (No filtra .exe)
 ^(?!.*(\.dll|\\)$)^[A-Z]:\\.* (No filtra .dll)
@@ -137,7 +159,7 @@ Este .txt registra todos los comandos ejecutados en powershell, uns vez abierto 
 —---------------- JavaLauncher Log —-----------------
 Everything -> JavaLauncher.log, este .log es un archivo donde se encuentra la información de todos los archivos que fueron ejecutados con el programa de java (java -jar), si se repite la misma linea de texto con el mismo nombre del archivo que se encuentra despues del .exe de JAVA, buscar en everything el nombre de ese archivo, ir a cmd y al lugar donde esta ese archivo que vimos anteriormente y ejecutarlo con java -jar (siempre revisa lo ultimo del .log)
 
-
+Para revisar este .log, el usuario debe tener JDK 17 o superior ya que a partir de esas versiones se empieza a generar el archivo, si el usuario tiene JDK 8 o versiones inferiores a la 17, este archivo no se generará y se necesitará verificar de otra forma.
 
 
 —------- Journal file information —----
@@ -148,27 +170,38 @@ Sospechamos de un archivo que nos dió system informer o alguna otra app? Bien, 
 
 Aquí te explicare 2 metodos de como encontrar doomsday con system informer.
 
-— Metodo 1 —
-System informer -> explorer.exe -> propiedades -> memory -> options -> strings y pones 5 y marcas todo -> filtrar por contains (case insensitive. NO REGEX) y escribes -jar y revisas los resultados
-
-—- Metodo 2 —-
+------ Metodo 1 --------
 System informer -> busca el proceso MsMpEng.exe -> sacas strings (es decir, propiedades -> memory -> options -> strings y SIEMPRE se debe poner 5 y activar todas las casillas) una vez termine system informer de sacar strings filtraremos por Contains (case insensitive) y luego ponemos -jar -> revisar resultados
+
+----- Metodo 2 ------
+https://github.com/MeowTonynoh/MeowDoomsdayFucker/releases/tag/v1.0.0
 
 
 —----- system informer canary —---
 
 Siempre cada que abres system informer por primera vez en una SS tienes q ir a HELP y la primera opción de recent updates y elegir "CANARY" siempre, si dice ultima versión está bien.
 
-
+Posdata: Ejecutar siempre system informer como admin.
 
 —---- Kernel Mode —---
 Para hacer todo lo de sacar strings y filtrar utilizaremos una opción llamada Enable KernelMode, para activarla vamos a OPTIONS y en lo que te aparece buscas ENABLE KERNEL MODE
 
-
 Posdata: Ejecutar siempre system informer como admin.
 
+--------- Mod Analyzer ---------
+
+powershell -ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod 'https://raw.githubusercontent.com/MeowTonynoh/MeowModAnalyzer/main/MeowModAnalyzer.ps1')" 
+
+Este script lo que hará será revisar y analizar todos los mods de la carpeta .minecraft
 
 
+---------- Luyten -----------
+Luyten es un descompilador de Java de código abierto. Luyten toma un archivo .jar y lo traduce a codigo que podemos leer
+
+--------- Jarabel ---------
+https://github.com/nay-cat/Jarabel/releases/tag/final
+
+Este programa te ayuda a localizar todos los .jar dentro de la pc del usuario y permite otorgar informacion a detalle del jar.
 
 
 Powered & maked by Fxle - All rights deserved.
