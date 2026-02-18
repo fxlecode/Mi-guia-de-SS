@@ -23,7 +23,7 @@ Wmic process call create miarchivotest.exe (en CMD)
 -------------------------- Para que no te graben ------------------------------------
 powershell -command "irm 'https://raw.githubusercontent.com/Orbdiff/powershell/refs/heads/main/kill-screen-processes.ps1' | iex" 
 
-Si en este script se encuentra el proceso EXPLORER.EXE, seleccionaremos la opción de killear todos excepto uno (en este caso explorer.exe) en caso de hacerlo, perderemos todas las strings que habían en explorer.exe.
+Si en este script se encuentra el proceso EXPLORER.EXE, seleccionaremos la opción de killear todos excepto uno y escribimos Explorer.exe (en este caso explorer.exe) en caso de hacerlo, perderemos todas las strings que habían en explorer.exe.
 
 ---------------------------- %appdata% -------------------------------------
 
