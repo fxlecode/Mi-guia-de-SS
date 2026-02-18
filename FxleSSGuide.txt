@@ -16,22 +16,23 @@ Start proyectobiologia.exe/proyectobiologia.xyz
 (Usar system informer para comprobar extensión modificada)
 
 
-Paso 1 --------------------------Para que no graben ------------------------------------
+-------------------------- Para que no te graben ------------------------------------
 powershell -command "irm 'https://raw.githubusercontent.com/Orbdiff/powershell/refs/heads/main/kill-screen-processes.ps1' | iex" 
 
 Si en este script se encuentra el proceso EXPLORER.EXE, seleccionaremos la opción de killear todos excepto uno (en este caso explorer.exe) en caso de hacerlo, perderemos todas las strings que habían en explorer.exe.
 
-Paso 2 ---------------------------- %appdata% -------------------------------------
+---------------------------- %appdata% -------------------------------------
 
 Revisar mods, versions, logs, texture packs.
 
-Paso 3 ---------------------- SS tools y scripts ---------------------------
+---------------------- SS tools y scripts ---------------------------
 
 
 —-ss tools—
 powershell -command "irm 'https://raw.githubusercontent.com/xsolary1234-hash/Screenshare-Alliance/refs/heads/main/SS.ps1' | iex"
 +
 https://github.com/Orbdiff/SSTool/releases/tag/tool
+https://github.com/Spokwn
 
 —--Repositorios Github—-
 https://github.com/orbdiff
@@ -56,7 +57,7 @@ powershell -Command "irm 'https://github.com/praiselily/lilith-ps/blob/main/Serv
 
 Powered by Fxle
 
-Paso 4 -------------------- System Informer Regex -------------------
+-------------------- System Informer y Regex -------------------
 
 SysMain
 C:\\windows\\prefetch((?!Exe).)*$ - Extensiones modificadas
@@ -116,7 +117,7 @@ Filtrados para .exe's:
 ^(?!.*(\.exe|\\)$)^[A-Z]:\\.* (No filtra .exe)
 ^(?!.*(\.dll|\\)$)^[A-Z]:\\.* (No filtra .dll)
 
-Paso 4.1 ------------------ PcaSvc ejecucción de .exe -----------------
+------------------ PcaSvc ejecucción de .exe -----------------
 1) Abre System Informer y busca el proceso explorer.exe
 2) Sacale strings a el proceso explorer.exe y espera a que termine
 3) Una vez listo filtra usando Contains (Case-Insensitive) por pcaclient
@@ -124,26 +125,26 @@ Paso 4.1 ------------------ PcaSvc ejecucción de .exe -----------------
 5) Analiza los resultados teniendo en cuenta que los más recientes son los que estén más abajo y los más antiguos los que se encuentren más arriba.
 Powered by Fxle
 
-Paso 5 -------------------- Everything ---------------------
+-------------------- Everything ---------------------
 .jar/.exe/.dll = no resultados entonces ctrl + shift + f y luego restaurar por defecto.
 
 
-Paso 6 —--------------- ConsoleHostHistory —---------------
+ —--------------- ConsoleHostHistory —---------------
 Everything -> ConsoleHost_History.txt
 Este .txt registra todos los comandos ejecutados en powershell, uns vez abierto el .txt revisar linea por linea (Sabiendo que lo que esta más abajo es lo más reciente y lo que esta más arriba lo más antiguo)
 
 
-Paso 6.1 —---------------- JavaLauncher Log —-----------------
+—---------------- JavaLauncher Log —-----------------
 Everything -> JavaLauncher.log, este .log es un archivo donde se encuentra la información de todos los archivos que fueron ejecutados con el programa de java (java -jar), si se repite la misma linea de texto con el mismo nombre del archivo que se encuentra despues del .exe de JAVA, buscar en everything el nombre de ese archivo, ir a cmd y al lugar donde esta ese archivo que vimos anteriormente y ejecutarlo con java -jar (siempre revisa lo ultimo del .log)
 
 
 
 
-Paso 7 —------- Journal file information —----
+—------- Journal file information —----
 
 Sospechamos de un archivo que nos dió system informer o alguna otra app? Bien, para ello siempre hay que verificar en JOURNAL TRACE los logs de journal dejados por el archivo. Extra: siempre que busques el archivo del que sospechas en JOURNAL TRACE, hazle click derecho y apreta la opción de SHOW FILE INFORMATION, en el apartado de los logs vemos un nombre diferente al ultimo log del archivo dejado? Bueno, es una clara señal de que se le cambio el nombre. Sospechamos que nos borró journal ya que JournalTrace contiene pocos logs, para ello utilizaremos la app CHECKDELETEDUSN para confirmar (https://github.com/Orbdiff/CheckDeletedUSN)
 
-Paso 8 —----- Doomsday fxcker —-----
+—----- Doomsday fxcker —-----
 
 Aquí te explicare 2 metodos de como encontrar doomsday con system informer.
 
