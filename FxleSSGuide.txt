@@ -204,4 +204,13 @@ https://github.com/nay-cat/Jarabel/releases/tag/final
 Este programa te ayuda a localizar todos los .jar dentro de la pc del usuario y permite otorgar informacion a detalle del jar.
 
 
+---------------- DLL ---------------
+Como detectar un dll ejecutado con regsvr32/rundll32?
+Simple, se utiliza PFTrace. Esta tool lo que hace es scanear todos los regsvr32 y rundll32 en prefetch y mostrar los archivos DLL sospechosos/flagged o que se ejecutaron en ese prefetch.
+
+------------- Signatures ------------
+Como comprobar signatures? Para ello se utiliza este script de spokwn: irm "https://raw.githubusercontent.com/spokwn/powershells/refs/heads/main/signatures.ps1" | iex
+
+
+
 Powered & maked by Fxle - All rights deserved.
