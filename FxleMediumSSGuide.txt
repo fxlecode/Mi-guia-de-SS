@@ -34,7 +34,7 @@ dll: esentutl /y reporte.pdf:cheat.dll /d DllExtraido.dll /o
 Extra (.txt): esentutl /y imgui.ini:claves.txt /d TxtExtraido.txt /o
 
 ------------------------- AmCache -----------------------------
-¿Cómo aprovechar AmCache? Muy facil, utilizaremos 2 tools, la primera es el AmCacheParser de Eric Zimmerman: https://download.ericzimmermanstools.com/net9/AmcacheParser.zip
+¿Cómo aprovechar AmCache? Muy facil, hay 2 tools para ello, la primera es el AmCacheParser de Eric Zimmerman: https://download.ericzimmermanstools.com/net9/AmcacheParser.zip
 ¿Qué haremos con el programa de eric ya instalado? Ejecutaremos esto en CMD:
 
 AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv .
