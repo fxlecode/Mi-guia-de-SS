@@ -26,8 +26,12 @@ Una vez hecho todo, iremos a la carpeta donde guardamos el .csv y abriremos Time
 
 ------------------------ ADS ---------------------------------
 ¿Cómo detectar si un archivo tiene ADS? Simple, utilizaremos un programa hecho por nirsoft y escanearemos la ruta donde estan los archivos que quieres escanear. https://www.nirsoft.net/utils/alternate_data_streams.html
-¿Nos salio algo de un archivo como fotos.png:Zone.identifier o fotos.png:archivo.exe? Para extraer ese ADS utilizaremos Wmic en CMD
+¿Nos salio algo de un archivo como fotos.png:archivo.exe? Bien, Para extraer ese ADS utilizaremos CMD:
 
+Jar: esentutl /y archivo_normal.txt:aplicacion.jar /d JarExtraido.jar /o
+Exe: esentutl /y imagen_vacaciones.jpg:programa.exe /d ExeExtraido.exe /o
+dll: esentutl /y reporte.pdf:cheat.dll /d DllExtraido.dll /o
+Extra (.txt): esentutl /y imgui.ini:claves.txt /d TxtExtraido.txt /o
 
 ------------------------- AmCache -----------------------------
 ¿Cómo aprovechar AmCache? Muy facil, utilizaremos 2 tools, la primera es el AmCacheParser de Eric Zimmerman: https://download.ericzimmermanstools.com/net9/AmcacheParser.zip
