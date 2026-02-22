@@ -1,1 +1,57 @@
+------------------------ $LogFile ---------------------------------
+LogFile es un archivo de los sistemas NTFS de Windows, es lo mismo que $UsnJrnl:$J, trabajan juntos, Logfile tambien almacena un registro de todos los cambios que pasan en la pc,
+la diferencia entre el y Journal es q logfile tiene un registro más avanzado/detallado.
 
+Logfile se puede utilizar en casos de que el Journal FUE borrado.
+
+¿Como aprovechar Logfile?
+Bien, lo que haremos es extraer la información en un .csv y poder analizarylo y leerlo con un programa, para ello necesitaremos de estas tools:
+
+FTK Imager: https://accessdata-ftk-imager.software.informer.com/download
+TimeLine Explorer: https://download.ericzimmermanstools.com/net6/TimelineExplorer.zip
+NTFS LT: https://sites.google.com/site/forensicnote/ntfs-log-tracker
+
+Que haremos primero? Apretaremos windows R y pondremos Control Folders, bajamos y desactivamos las opciones que digan al principio OCULTAR. (Incluye para los archivos protegidos por el sistema)
+Una vez descargado todo, abriremos FTK Imager, luego a File, y a Add All attached devices o algo asi. Una vez hecho eso, hiremos a root y buscaremos el archivo $Logfile le haremos click y lo exportamos
+a la ruta que se te sea más comoda por ejemplo documentos, en NTFS LogTracker anda al apartado "$logfile file path" y dale a los tres puntitos, ahi abriremos el archivo q extraiste con lo del FTK Imager.
+Depues dale a Parser (o parse algo asi) y en "SQLite DB FileName" y guardamos, una vez termine seleccionaremos CSV export y lo guardamos en cualquier carpeta. Una vez hecho lo anterior, iremos a TimeLine Explorer y
+abriremos el archivo .csv con más bytes/peso. Luego arriba a la derecha pondremos lo q queramos si quieres ver .exe pones ".exe" lo mismo con .jar, .dll o nombres de programas asi por el estilo.
+
+-------------------------- MFTECmd -------------------
+¿Para que utilizaremos este programa? Simple, para leer la estrucutra del sistema NTFS. (https://download.ericzimmermanstools.com/net9/MFTECmd.zip)
+Si intentamos buscar con everything o el explorador de archivos MFT, no lo encontraremos a simple vista.
+Para ello utilizaremos MFTECmd y pondremos en CMD lo siguiente "MFTECmd.exe -f c:\$MFT --csv ."
+Una vez hecho todo, iremos a la carpeta donde guardamos el .csv y abriremos TimeLine Explorer, dentro de TimeLine Explorer, alli abriremos el .csv y leeremos y analizaremos todo lo de $FILE_NAME y $STANDAR_INFORMATION.
+
+
+------------------------ ADS ---------------------------------
+¿Cómo detectar si un archivo tiene ADS? Simple, utilizaremos un programa hecho por nirsoft y escanearemos la ruta donde estan los archivos que quieres escanear. https://www.nirsoft.net/utils/alternate_data_streams.html
+¿Nos salio algo de un archivo como fotos.png:Zone.identifier o fotos.png:archivo.exe? Para extraer ese ADS utilizaremos Wmic en CMD
+
+
+------------------------- AmCache -----------------------------
+¿Cómo aprovechar AmCache? Muy facil, utilizaremos 2 tools, la primera es el AmCacheParser de Eric Zimmerman: https://download.ericzimmermanstools.com/net9/AmcacheParser.zip
+¿Qué haremos con el programa de eric ya instalado? Ejecutaremos esto en CMD:
+
+AmcacheParser.exe -f "C:\Windows\appcompat\Programs\Amcache.hve" --csv .
+
+Una vez termine, se generará un archivo .csv que se deberá analizar con TimeLine Explorer.
+
+2da Tool: https://github.com/Orbdiff/AmcacheParser/releases
+Esta tool de diff analizará las Signatures y YARA matchs de los archivos encontrados, al momento de ejecutarlo nos hará 2 preguntas, recomiendo primero apretar N (o si quieren que sea en instancia apreten Y) y luego Y
+
+----------------- bstrings ------------------ https://download.ericzimmermanstools.com/net9/bstrings.zip
+Este programa buscará strings usando Regex o Contains en varios tipos archivos, recomiendo hacer primero lo del apartado RAM DUMP y luego esto, he creado un comando en CMD a base de los que ya
+hay en SSA que permite ver muchas cosas con este programa (Quiero aclarar que hay que utilizar esto donde guardamos el archivo del DUMP de RAM realizado):
+
+bstrings.exe -f "rutadeldumpqueguardamos.mem" --lr "(?i)\b(powershell|cmd|wscript|cscript|sh|bash|zsh|curl|wget|bitsadmin|certutil|schtasks|regsvr32|wmic|rundll32|mshta|scrcons)\b|iwr|iex|invoke-[\w]+|(?:\-e(?:nc(?:odedcommand)?)?)|(?:\bbase64\b)|(?:\bchar\b)|github|pastebin|raw\.githubusercontent|\.exe|\.bat|\.vbs|\.ps1|\.js|\.hta|\.scr|http[s]?://|ftp://" -o Results.txt
+
+Una vez termine el programa, se creará un archivo llamado "Results.txt", allí esta la información dada por el comando que ejecutamos.
+
+
+---------------- RAM Dump --------------- FTK Imager: https://accessdata-ftk-imager.software.informer.com/download
+
+¿Cómo dumpeo RAM?
+
+Bien, para ello utilizaremos FTK Imager, esta tool nos permitira dumpear la RAM pero para dumpearla, 
+debemos de ir a "File" y a "Capture Memory", una vez hecho eso pondremos el archivo en la carpeta que queramos que este el archivo.
