@@ -59,3 +59,62 @@ Una vez termine el programa, se creará un archivo llamado "Results.txt", allí 
 
 Bien, para ello utilizaremos FTK Imager, esta tool nos permitira dumpear la RAM pero para dumpearla, 
 debemos de ir a "File" y a "Capture Memory", una vez hecho eso pondremos el archivo en la carpeta que queramos que este el archivo.
+
+
+
+------------ Red Lotus & White Lotus -------------- 
+
+
+----- Downloader -----
+¿Queremos hacer una SS fool pero no sabemos que programas utilizar? Bien, utilizaremos RedLotus Downloader, te preguntaras, que hace esta tool, bueno descarga todas las SS tool ya sean de red lotus, spokwn, etc. (https://github.com/ItzIceHere/RedLotus-Tool-Downloader)
+
+Una vez abierto apretaremos todas las opciones que nos aparaecen e iremos al apartado "Presets" y descargaremos según nuestra necesidad, si queremos hacer una SS rápida, apretaremos la opción de "Quick SS", Si queremos hacer una SS full, apreta en la opción "Full SS" y si queremos usar todas las tools que ofrece descargar este programa, apretaremos en "ALL"
+
+
+----- Mod Analyzer -----
+
+El mod analyzer de redlotus es bastante completo, esta SS tool tambien nos permite encontrar el famoso Novoware Client y lo detectará como Sospechoso. Lo que hace resumidamente es revisar todos los mods de .minecraft, revisarlos y ver si salen en un escaneo de memoria y todo eso.
+
+
+---- RedLotus Memory Acquisition ---- (iwr -useb "https://raw.githubusercontent.com/RedLotus-Development/RedLotus_Acquisition/Red-Lotus/REDLOTUS_Memory_Acquisition.ps1" | iex)
+
+¿Qué hace este programa? Simple, se divide en 3 etapas:
+
+Durante la primera etapa, el script captura la memoria de todos los procesos administrativos en ejecución y los guarda como archivos .dmp dentro de una carpeta llamada ProcessDump.
+
+A continuación, el sistema ofrece una pequeña ventana de tiempo donde el usuario tiene la opción de cancelar el resto de la operación presionando CTRL+C si no desea continuar.
+
+Al avanzar a la segunda etapa, el script se encarga de descargar y descomprimir automáticamente la utilidad de análisis BSTRINGS, creada por Eric Zimmerman.
+
+Finalmente, en la tercera etapa, la herramienta BSTRINGS extrae todas las rutas de Windows (win_path) desde los dump de memoria, generando un archivo paths.txt para luego proceder a escanear y verificar las firmas de esos archivos detectados.
+
+
+---- RedLotus AltChecker ----
+
+¿Queremos ver si el usuario tiene alguna otra alt de su cuenta de minecraft? Bueno para ello utilizaremos este programa de Redlotus que busca y analiza toda la PC en busca de multicuentas de minecraft. (https://github.com/ItzIceHere/RedLotusAltChecker/releases/tag/RL)
+
+
+---- WhiteLotus Scanner ---- (https://github.com/RedLotus-Development/White-Lotus-Scanner/releases/tag/forensics)
+
+Como su nombre lo dice es un scanner, cuando lo abras te pedirá seleccionar un archivo .csv que puede ser como el de $logfile o el de MTFECmd para evitar utilizar TimeLine Explorer.
+
+
+---- RedLotus Scripts ----
+
+Aqui mencionare una lista de los .ps1 que hizo redlotus/los owners de redlotus.
+
+- >< -
+https://github.com/RedLotus-Development/bacanoicua-s-scripts
+El RedLotusHardDiskVolumeConverter.ps1 es un script que sírve para analizar a fondo los distintos formatos de los volúmenes de los disco duro para poder sacar evidencias sin perdér datós.
+
+Con el RedLotusPrefetchIntegrityAnalyzer.ps1 podes todos los archivós prefetch de windwos para descubrir si alguna app intentó borrar sus archivos .pf .
+
+El archivo RedLotusSignatures.ps1 te permite escanear todo el sistema operativo usando un monton de firmas digitales especificas para identificar cualquier archivo sospechoso/raro.
+
+https://github.com/nolww/project-mohr
+
+El script ManualTasks.ps1 junta un monton de herramientas de analisis forense que un investigador normalmente tendria que ejecutár paso a paso de forma manual para recolectar toda la informaciòn del equipo.
+
+Ejecutár el SuspiciousScheduler.ps1 te deja inspeccionar las tareas programadas de windows buscando configuraciones raras que los bypassers usan para bypasear y mantener persistencia en la pc.
+
+El SvcParser.ps1 examina en profundidad los serviciós de windows para encontrar procesos sospechosos o configuraciones que apuntan a un cheat.
