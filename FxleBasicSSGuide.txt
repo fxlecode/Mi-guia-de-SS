@@ -194,6 +194,9 @@ powershell -ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMetho
 
 Este script lo que hará será revisar y analizar todos los mods de la carpeta .minecraft
 
+Otra forma es con HabibiModAnalyzer que hace lo mismo basicamente:
+
+powershell Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass && powershell Invoke-Expression (Invoke-RestMethod https://raw.githubusercontent.com/HadronCollision/PowershellScripts/refs/heads/main/HabibiModAnalyzer.ps1)
 
 ---------- Luyten -----------
 Luyten es un descompilador de Java de código abierto. Luyten toma un archivo .jar y lo traduce a codigo que podemos leer
