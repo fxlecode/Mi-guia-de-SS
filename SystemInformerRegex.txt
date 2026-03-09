@@ -1,0 +1,95 @@
+* CSRSS
+(?!.*(\.exe|\.dll|\.manifest|\.config|\\)$)^[A-Z]:\\.* | Extension Modifications
+^[a-z]:.+\.((?!exe|pyd|manifest|dll|config|\\|cpl|microsoft-|shell).)*$ | Extension Modifications
+^[A-Z]:\\((?!Exe|dll|pyd|ini).)*$ | Extension Modifications
+(?!.*(\.dll|\\)$)[A-Z]:\\.* | Filters Dll
+(?!.*(\.exe|\\)$)[A-Z]:\\.* | Filters .exe
+\\\?\?\\[A-Z]:\\.* 
+^C:\\.* >> .exe | see .exe
+^[\\].+.[A-Z]:.*(exe|dll).+[Manifest][local] 
+^(?!C:)[A-Z]:[\\](?!\+|(u){FFFF}|rkr)
+^(?:\\\\\?\\)?[A-Za-z]:\\.+$
+^(?!.*\.dll$)(?:\\\\\?\\)?[A-Za-z]:\\.+$
+
+-----------------------------------------------------------------------------------------------------------
+* Explorer
+^file:///((?!exe|txt|.xbf|.xaml|dll).)*$ | Removed files
+^file:///((?!exe|txt|.xbf|.xaml|dll|lnk).)*$ | Removed files
+^(?!C:)[A-Z]:.+ > :\\\.* | see other discs
+^{"displaytext"((?!Exe).)*$ | Injections
+^JNativeHook.+dll$ | see jnativehook
+^[A-Z]:\\Users\\.*\\appdata\\.*\\Temp\\.*.$ | Temp
+^file:///[A-Z]:/.+./$ | invisible characters
+^[A-Za-z]:\\(?:[\w\-]+\\)*\w+\.\w+$ | identifies file path only
+-----------------------------------------------------------------------------------------------------------
+* DPS
+^!![A-Z]((?!Exe).)*$ | Filter .exe
+^\\device\\harddiskvolume((?!Exe|dll).)*$ | Filter .exe
+^\\device\\harddiskvolume[0-99]\\((?!exe).)*$ | Extension Modifications
+^\\device\\((?!harddiskvolume3).)*$ | Filters for harddiskvolume3
+^\\device\\mup\\localhost\\* | localhost
+^\\\\localhost | Localhost
+-----------------------------------------------------------------------------------------------------------
+* SYSMAIN
+C:\\windows\\prefetch((?!Exe).)*$ | 
+-----------------------------------------------------------------------------------------------------------
+* PCASVC
+^trace,*,*,:*\.* | pcaclient longer
+^C:\\((?!Exe|dll|common|microsoft|sys|db|tmp).)*$ | 
+-----------------------------------------------------------------------------------------------------------
+SysMain
+C:\\windows\\prefetch((?!Exe).)*$ - Extensiones modificadas
+-----------------------------------------------------------------------------------------------------------
+Dnscache
+whiteout.lol|slapp.in|entropy.club|vape.gg|dopp.in|neverlack.in|dream.xyz| - Dominios web
+-----------------------------------------------------------------------------------------------------------
+CDPUserSvc
+^\[{"application":"c:\\((?!Exe).)*$ - Extensiones Modificadas
+[{"application":"[A-Z]:\\\\((?!exe).)*","platform" - Excluye exes
+^\[{"application":.*_exe_ - Posibles Ejecuciones
+^{"displayText":".*black - Posibles Ejecuciones
+Otros - {1ac14e77-02e7-4e5d-b744-2eb1ae5198b7} > ^((?!cmd.exe|notepad.exe|mmc.exe|rundll32.exe|msconfig.exe|dllhost.exe|diskpart.exe|regedit.exe).)*$
+-----------------------------------------------------------------------------------------------------------
+SearchIndexer.exe
+^file:C: - Mostrará sólo el disco C:
+-----------------------------------------------------------------------------------------------------------
+SgrmBroker.exe
+^{"ProcessID":.+"ImageName":"[a-z]((?!exe).)*$ - Extensiones Modificadas
+"ExitCode":[1-9] - No ExitCode 0 (Aplicaciones no ejecutadas correctamente o cheats)
+-----------------------------------------------------------------------------------------------------------
+ctfmon.exe
+^[A-Z]:.+.\\((?!exe).)*$ - Excluye exes
+^[A-Z]:.+.\\((?!dll).)*$ - Excluye dlls
+-----------------------------------------------------------------------------------------------------------
+Registry
+^[A-Z]:(\\).*(FriendlyAppNames|ApplicationCompany) - Posibles Ejecuciones
+-----------------------------------------------------------------------------------------------------------
+lghub_agent.exe
+durationms.+isDown - Macro
+-----------------------------------------------------------------------------------------------------------
+Everything
+.anydesk|.mp4|.webm|.avi|.mkv|.html - Grabaciones (Puedes añadir más extensiones de video)
+regex:[^\x00-\x7FFFFFFF] - Invisible/Hollow Character | Unicode
+regex:[^\x00-\xFFFF] - Invisible/Hollow Character | Unicode
+-----------------------------------------------------------------------------------------------------------
+DPS & Diagtrack
+^!![A-Z]((?!Exe).)*$ | no filtrar .exe
+^\\device\\harddiskvolume((?!Exe|dll).)*$ | no filtrar .exe
+^\\device\\harddiskvolume[0-9]\\((?!exe).)*$ | extension modificada
+^\\device\\((?!harddiskvolume4).)*$ | no filtrar harddiskvolume3
+^\\device\\mup\\localhost\\* | localhost
+^\\\\localhost | Localhost
+-----------------------------------------------------------------------------------------------------------
+CSRSS, filtrar por regex (case-insensitive) 
+
+Filtrados para ver .dll's: 
+^(?:\\\\\?\\)?[A-Za-z]:\\.+$
+
+Filtrados para .exe's: 
+^(?!.*\.dll$)(?:\\\\\?\\)?[A-Za-z]:\\.+$
+-----------------------------------------------------------------------------------------------------------
+(CSRSS, DIAGTRACK, ETC) NO FILTRA .EXE / NO FILTRA .DLL
+
+^(?!.*(\.exe|\\)$)^[A-Z]:\\.* (No filtra .exe)
+^(?!.*(\.dll|\\)$)^[A-Z]:\\.* (No filtra .dll)
+-----------------------------------------------------------------------------------------------------------
