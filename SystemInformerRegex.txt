@@ -85,6 +85,8 @@ CSRSS, filtrar por regex (case-insensitive)
 Filtrados para ver .dll's: 
 ^(?:\\\\\?\\)?[A-Za-z]:\\.+$
 
+Dll hijacking: (?!.*(\.exe|\\)$)[A-Z]:\\.*
+
 Filtrados para .exe's: 
 ^(?!.*\.dll$)(?:\\\\\?\\)?[A-Za-z]:\\.+$
 -----------------------------------------------------------------------------------------------------------
